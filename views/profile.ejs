@@ -1,22 +1,11 @@
-<%- include('partials/header') -%>
-<div class="container">
-  <div class="row mt-5">
+<%- include('partials/headerLoggedIn') -%>
+<div class="container ">
+  <div class="row ">
 
 
-
-    <!-- <button onclick="getData()">click</button> -->
-    <input type="text" placeholder="City" id="userInput">
-    <button type="button" onclick="getCity()">Explore</button>
-<ul></ul>
-
-
-      <div class="col-6">
-          <div>
-              <p><strong>User Name</strong>: <%= user.userName %></p>
-              <p><strong>Email</strong>: <%= user.email %></p>
-              <a href="/logout" class="col-3 btn btn-primary">Logout</a>
-          </div>
-          <div class="mt-5">
+      <div class="col-6 profileBody">
+          
+          <div class="mt-2 ">
             <h2>Add a post</h2>
             <form action="/post/createPost" enctype="multipart/form-data" method="POST">
               <div class="mb-3">
@@ -35,20 +24,22 @@
             </form>
           </div>
       </div>
+
       <div class="col-6">
-        <ul class="row list-unstyled">
+        <ul class="row list-unstyled postsScroll scrollbar scrollbar-morpheus-den">
         <% for(var i=0; i<posts.length; i++) {%>
           <li class="col-6 justify-content-between mt-5">
             <a href="/post/<%= posts[i]._id%>">
-              <img class="img-fluid" src="<%= posts[i].image%>">
+              <img class="img-fluid img-thumbnail" src="<%= posts[i].image%>">
             </a>
           </li>
         <% } %>
         </ul>
-        <div class="row justify-content-center mt-5">
+        <div class="row justify-content-center mt-4">
           <a class="btn btn-primary" href="/feed">Return to Feed</a>
         </div>  
-      </div>  
+      </div>
+        
     </div>
   </div>
 </div>

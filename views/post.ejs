@@ -1,12 +1,12 @@
 <%- include('partials/header') -%>
 <div class="container">
   <div class="row justify-content-center mt-5">
-    <div class="col-6">
+    <div class="col-6 postCenter" >
       <h2><%= post.title %></h2>
-      <img class="img-fluid" src="<%= post.image%>" />
+      <img class="img-fluid imgPost " src="<%= post.image%>" />
       <div class="row justify-content-between">
         <form
-          class="col-1"
+          class="col-3"
           action="/post/likePost/<%= post.id %>?_method=PUT"
           method="POST"
         >
@@ -23,9 +23,19 @@
         </form>
         <%}%>
       </div>
+      <p>Caption:<%= post.caption %></p>
     </div>
     <div class="col-3 mt-5">
-      <p><%= post.caption %></p>
+      <h3>COMMENTS</h3>
+      <div class="box">
+      <ul>
+        <% for(var i=0; i<comments.length; i++) {%>
+          <li class="col-6 justify-content-between mt-5">
+            <%=user.userName%>:<%= comments[i].comment%>
+          </li>
+        <% } %>
+      </ul>
+    </div>
     </div>
     <div class="mt-5">
       <h2>Add a comment</h2>
@@ -37,13 +47,7 @@
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
-    <ul>
-      <% for(var i=0; i<comments.length; i++) {%>
-        <li class="col-6 justify-content-between mt-5">
-          <%= comments[i].comment%>
-        </li>
-      <% } %>
-    </ul>
+   
     <div class="col-6 mt-5">
       <a class="btn btn-primary" href="/profile">Return to Profile</a>
       <a class="btn btn-primary" href="/feed">Return to Feed</a>

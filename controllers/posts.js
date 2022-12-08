@@ -5,7 +5,7 @@ const Comment = require("../models/Comment");
 module.exports = {
   getProfile: async (req, res) => {
     try {
-      const posts = await Post.find({ user: req.user.id });
+      const posts = await Post.find({ user: req.user.id }).sort({createdAt:'desc'});
       res.render("profile.ejs", { posts: posts, user: req.user });
     } catch (err) {
       console.log(err);
@@ -63,6 +63,7 @@ module.exports = {
   },
   deletePost: async (req, res) => {
     try {
+      console.log('delete')
       // Find post by id
       let post = await Post.findById({ _id: req.params.id });
       // Delete image from cloudinary

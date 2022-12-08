@@ -1,5 +1,6 @@
-
+// calls API
 function getCity(){
+    let i=0
     let userInput=document.getElementById("userInput").value
     console.log(userInput)
 
@@ -13,10 +14,15 @@ function getCity(){
 
     fetch(`https://hotels4.p.rapidapi.com/locations/v3/search?q=${userInput}&locale=en_US&langid=1033&siteid=300000001`, options)
     .then(response => response.json())
-    .then((data => {
-        // code to handle the response
+	.then(response => {
+        document.querySelector("ul").innerHTML = "";
+        response.sr.forEach(hotel=>{
+            const markup=`<button><li>${hotel.regionNames.shortName}</li><button>`;
+            document.querySelector('ul').insertAdjacentHTML('beforeend',markup)
+        })
     })
-    .catch(err => console.error(err));
+	.catch(err => console.error(err));
+
 
 }
 
